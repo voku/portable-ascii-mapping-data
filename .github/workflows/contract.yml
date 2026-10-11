@@ -1,0 +1,33 @@
+name: Data provider contract
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['7.1', '7.4', '8.4', '8.5']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+          tools: ${{ matrix.php == '7.1' && 'composer:2.2' || 'composer:v2' }}
+      - run: composer validate --strict
+      - run: composer install --no-dev --no-interaction --prefer-dist
+      - run: composer test
+      - run: composer check-data
+      - name: Check exported archive and provider without native text extensions
+        run: |
+          mkdir -p "$RUNNER_TEMP/provider-archive"
+          git archive HEAD | tar -x -C "$RUNNER_TEMP/provider-archive"
+          cp -R vendor "$RUNNER_TEMP/provider-archive/vendor"
+          test ! -d "$RUNNER_TEMP/provider-archive/tests"
+          test ! -d "$RUNNER_TEMP/provider-archive/build"
+          php -n -r 'require $argv[1] . "/vendor/autoload.php"; $map = \Voku\PortableAsciiMappingData\BankMap::load("x000"); if (!is_array($map) || count($map) === 0) {exit(1);}' "$RUNNER_TEMP/provider-archive"

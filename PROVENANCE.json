@@ -1,0 +1,10 @@
+{
+  "upstream_repository": "https://github.com/voku/portable-ascii",
+  "upstream_commit": "e745ca2778f90e109275fedb6f23c9ddede400bf",
+  "upstream_path": "src/voku/helper/data/",
+  "original_contract_commit": "180a8d12055eb350859b628c64066a90a895bd10",
+  "selection": "x*.php",
+  "files": 189,
+  "representation": "Existing compact PHP arrays, copied byte-for-byte; ordered array semantics retained.",
+  "data_changes": "No mapping values changed during extraction."
+}

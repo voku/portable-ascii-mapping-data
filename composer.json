@@ -1,0 +1,34 @@
+{
+    "name": "voku/portable-ascii-mapping-data",
+    "description": "Lazy Unicode transliteration banks for portable-ascii.",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/voku/portable-ascii-mapping-data",
+    "authors": [
+        {
+            "name": "Lars Moelleken",
+            "homepage": "https://www.moelleken.org/"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Voku\\PortableAsciiMappingData\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "@php tests/contract.php",
+        "check-data": "@php build/import.php"
+    },
+    "support": {
+        "issues": "https://github.com/voku/portable-ascii-mapping-data/issues",
+        "source": "https://github.com/voku/portable-ascii-mapping-data"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0.x-dev"
+        }
+    }
+}

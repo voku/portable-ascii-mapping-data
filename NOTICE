@@ -1,0 +1,4 @@
+Copyright (C) 2019 Lars Moelleken.
+Extracted without mapping changes from voku/portable-ascii; see PROVENANCE.json.
+Upstream acknowledgements: Sean M. Burke (Text::Unidecode), Tomaz Solc (Unidecode).
+The upstream MIT license is retained verbatim in LICENSE.txt.
